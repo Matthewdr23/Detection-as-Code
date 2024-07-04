@@ -1,0 +1,23 @@
+# detections/linux/unauthorized_user_addition.yml
+title: Unauthorized User Addition
+description: Detects the addition of unauthorized users to the system
+author: Security Team
+status: stable
+tags:
+  - attack.t1078
+  - user_addition
+
+logsource:
+  category: user_management
+  product: linux
+
+detection:
+  selection:
+    EventID: 600
+    User: root
+  condition: selection
+
+falsepositives:
+  - Legitimate user additions by administrators
+
+level: critical

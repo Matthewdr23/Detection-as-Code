@@ -1,0 +1,26 @@
+# detections/windows/suspicious_process_creation.yml
+title: Suspicious Process Creation
+description: Detects processes created by suspicious executables
+author: Security Team
+status: experimental
+tags:
+  - attack.t1059
+  - process_creation
+
+logsource:
+  category: process_creation
+  product: windows
+
+detection:
+  selection:
+    Image|endswith:
+      - '\powershell.exe'
+      - '\cmd.exe'
+      - '\wscript.exe'
+      - '\cscript.exe'
+  condition: selection
+
+falsepositives:
+  - Legitimate administrative scripts
+
+level: high
